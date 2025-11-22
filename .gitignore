@@ -1,22 +1,2 @@
 # Secrets and credentials
 secrets/
-srcs/.env
-.env
-
-# Passwords and keys
-*password*
-*secret*
-*credential*
-*.key
-*.pem
-
-# Docker and build artifacts
-.DS_Store
-*.swp
-*.swo
-*~
-.vscode/
-.idea/
-
-# Data directories (optional - comment out if you want to track them)
-# /home/*/data/
