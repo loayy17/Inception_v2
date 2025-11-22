@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception_network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -p\"$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception_network
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /var/www/html/wp-config.php ] || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception_network
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/loay1/data/mariadb
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/loay1/data/wordpress
+      o: bind
+
+networks:
+  inception_network:
+    driver: bridge
