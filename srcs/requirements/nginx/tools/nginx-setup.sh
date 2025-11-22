@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 # 1) check nginx_enviroment variables
 nginx_env=("$DOMAIN_NAME")
@@ -25,20 +24,10 @@ fi
 
 # 3) setup nginx configuration
 NGINX_CONF="/etc/nginx/conf.d/default.conf"
-mkdir -p /var/log/nginx
-rm -f /var/run/nginx.pid
 
 if [ ! -f "$NGINX_CONF" ]; then
 	echo "Setting up Nginx configuration..."
 	cat >"$NGINX_CONF" <<EOF
-server {
-	listen 80;
-	server_name ${DOMAIN_NAME};
-	location / {
-		return 301 https://\$host\$request_uri;
-	}
-}
-
 server {
     listen 443 ssl;
     server_name ${DOMAIN_NAME};
@@ -46,11 +35,9 @@ server {
     ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
 	ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 	ssl_protocols TLSv1.2 TLSv1.3;
-	
+
 	root /var/www/html;
 	index index.php index.html;
-
-	add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
 	location / {
 		try_files \$uri \$uri/ /index.php?\$args;
@@ -63,9 +50,6 @@ server {
         fastcgi_param SCRIPT_FILENAME /var/www/html\$fastcgi_script_name;
     }
 
-	location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
-		expires 30d;
-	}
 }
 EOF
 	echo "Nginx configuration set up at ${NGINX_CONF}."
