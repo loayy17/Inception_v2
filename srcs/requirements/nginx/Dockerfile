@@ -4,5 +4,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 COPY ./tools/nginx-setup.sh /nginx-setup.sh
 RUN chmod +x /nginx-setup.sh
-EXPOSE 443
+# for static web content
+EXPOSE 443 4444
 CMD [ "/nginx-setup.sh" ]

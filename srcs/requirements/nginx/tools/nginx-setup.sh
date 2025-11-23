@@ -24,7 +24,6 @@ fi
 
 # 3) setup nginx configuration
 NGINX_CONF="/etc/nginx/conf.d/default.conf"
-
 if [ ! -f "$NGINX_CONF" ]; then
 	echo "Setting up Nginx configuration..."
 	cat >"$NGINX_CONF" <<EOF
@@ -38,6 +37,7 @@ server {
 
 	root /var/www/html;
 	index index.php index.html;
+
 
 	location / {
 		try_files \$uri \$uri/ /index.php?\$args;

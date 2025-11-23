@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loay Alhindi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #0077b6;
+            --accent: #00b4d8;
+            --dark: #023e8a;
+            --bg: #f8f9fa;
+            --text: #222;
+            --white: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+        }
+
+        header h2 {
+            font-weight: 400;
+            margin-top: 0.3rem;
+        }
+
+        header p {
+            margin-top: 0.7rem;
+            font-size: 1rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        section {
+            padding: 2.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h3 {
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 0.6rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .skills-grid,
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-box,
+        .project-box {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .skill-box:hover,
+        .project-box:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform: translateY(-4px);
+        }
+
+        .project-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Loay Alhindi</h1>
+        <h2>Frontend Developer | Mechatronics Engineer | 42 Amman Student</h2>
+        <p>📍 Amman, Jordan | 📞 +962 799508218 | ✉️ <a href="mailto:loay1alhindi2@gmail.com"
+                style="color:white;">loay1alhindi2@gmail.com</a></p>
+        <p><a href="https://github.com/loayy17" target="_blank" style="color:white;">github.com/loayy17</a></p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h3>About Me</h3>
+            <p>
+                I’m a <strong>Frontend Developer</strong> with a background in <strong>Mechatronics Engineering</strong>
+                and deep software engineering training from <strong>42 Amman</strong>.
+                I build complex, reusable UI components with <strong>Vue 3</strong> and <strong>TypeScript</strong>,
+                focusing on clean architecture and strong UX principles.
+                My multidisciplinary background allows me to bridge the gap between hardware, automation, and software
+                systems — creating elegant, efficient, and scalable digital solutions.
+            </p>
+        </section>
+
+        <section>
+            <h3>Education</h3>
+            <ul>
+                <li><b>42 Amman</b> – Software Engineering Program (May 2024 – Present)
+                    Current Level: <b>5.93</b> | Common Core Progress: <b>57%</b>
+                    Projects include: Libft, get_next_line, ft_printf, Born2beroot, minishell, Philosophers, cub3d, and
+                    <b>Inception (in progress)</b>.</li>
+
+                <li><b>Al-Balqa’ Applied University</b> – B.Sc. in Mechatronics Engineering (2023)
+                    GPA: <b>3.67/4 (Excellent)</b></li>
+
+                <li><b>Abdul Aziz Al Ghurair School of Advanced Computing</b> – Robotic Process Automation (RPA)
+                    Training (2023)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Frontend Development Projects</h3>
+            <div class="projects-grid">
+                <div class="project-box">
+                    <h4>Tree Drawer Component</h4>
+                    <p>A highly interactive component built with <b>Vue 3 + TypeScript</b> supporting drag-drop, merge,
+                        add, delete, and inline editing features.</p>
+                </div>
+                <div class="project-box">
+                    <h4>Flowchart Builder</h4>
+                    <p>A custom flow builder that allows dynamic node linking, condition handling, and visual logic
+                        creation with reactive Vue state.</p>
+                </div>
+                <div class="project-box">
+                    <h4>Dynamic Table Renderer</h4>
+                    <p>Created a schema-driven table renderer supporting sorting, inline editing, and custom hover
+                        directives for interactive UX.</p>
+                </div>
+                <div class="project-box">
+                    <h4>Hover Directive Utility</h4>
+                    <p>Built a universal hover directive that dynamically applies classes across multiple components for
+                        unified interaction feedback.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-box">Vue 3 (Composition API)</div>
+                <div class="skill-box">TypeScript</div>
+                <div class="skill-box">JavaScript (ES6+)</div>
+                <div class="skill-box">HTML5 / CSS3 / SCSS</div>
+                <div class="skill-box">Pinia / Vuex</div>
+                <div class="skill-box">REST APIs</div>
+                <div class="skill-box">C / C++ / Python</div>
+                <div class="skill-box">Linux & System Programming</div>
+                <div class="skill-box">Git / GitHub</div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Soft Skills</h3>
+            <ul>
+                <li>Problem Solving & Critical Thinking</li>
+                <li>Collaboration & Peer Learning (42’s Peer-to-Peer Model)</li>
+                <li>Systematic Debugging & Rigor</li>
+                <li>Time Management & Task Prioritization</li>
+                <li>Adaptability & Fast Learning</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Languages</h3>
+            <ul>
+                <li>Arabic – Native (100%)</li>
+                <li>English – Advanced (70%)</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        © 2025 Loay Alhindi | Frontend Developer | 42 Amman
+    </footer>
+
+</body>
+
+</html>

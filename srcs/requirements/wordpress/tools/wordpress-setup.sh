@@ -46,6 +46,12 @@ if [ ! -f wp-config.php ]; then
 	wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbpass="$MYSQL_USER_PASSWORD" --dbhost="$WORDPRESS_DB_HOST:$WORDPRESS_DB_PORT" --allow-root
 	wp core install --url="https://${DOMAIN_NAME}" --title="$WORDPRESS_SITE_TITLE" --admin_user="$WORDPRESS_ADMIN_USER" --admin_password="$WORDPRESS_ADMIN_PASSWORD" --admin_email="$WORDPRESS_ADMIN_EMAIL" --allow-root
 	wp user create "$MYSQL_USER" "${MYSQL_USER}@${DOMAIN_NAME}" --role=author --user_pass="$MYSQL_USER_PASSWORD" --allow-root
+	# Bunus - Setup Redis caching if enabled
+	wp plugin install redis-cache --activate --allow-root
+	wp config set WP_REDIS_HOST $REDIS_HOST --allow-root
+	wp config set WP_REDIS_PORT $REDIS_PORT --allow-root
+	wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD --allow-root
+	wp redis enable --allow-root
 fi
 
 # # change listen address to 9000 and bind to all interfaces
