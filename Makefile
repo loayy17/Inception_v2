@@ -51,7 +51,9 @@ fclean: clean
 prune:
 	@docker system prune -f
 
+re: fclean up
+
 # -------------------------------
 # PHONY
 # -------------------------------
-.PHONY: up down stop restart rebuild logs ps clean fclean prune
+.PHONY: up down stop restart rebuild logs ps clean fclean prune re
