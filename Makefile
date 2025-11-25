@@ -2,8 +2,8 @@
 # VARIABLES
 # -------------------------------
 compose= ./srcs/docker-compose.yml
-data_mariadb= /home/loay1/data/mariadb
-data_wordpress= /home/loay1/data/wordpress
+data_mariadb= /home/lalhindi/data/mariadb
+data_wordpress= /home/lalhindi/data/wordpress
 
 # -------------------------------
 # TARGETS
@@ -45,7 +45,7 @@ clean:
 fclean: clean
 	@docker rmi -f $$(docker images -a -q) 2>/dev/null || true
 	@docker system prune -f --volumes
-	@rm -rf /home/loay1/data/*
+	@rm -rf /home/lalhindi/data/*
 
 # Prune only unused docker resources
 prune:

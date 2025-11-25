@@ -115,13 +115,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/loay1/data/mariadb
+      device: /home/lalhindi/data/mariadb
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/loay1/data/wordpress
+      device: /home/lalhindi/data/wordpress
       o: bind
 
 networks:

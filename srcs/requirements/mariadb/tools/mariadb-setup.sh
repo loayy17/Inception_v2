@@ -25,11 +25,18 @@ EOF
 	# Start MariaDB in background for initialization
 	mysqld_safe --skip-networking &
 	PID=$!
-
+	
+	timeout=30
+	start=0
 	# Wait until MariaDB is ready
 	until mysqladmin ping -uroot -p"$MYSQL_ROOT_PASSWORD" --silent >/dev/null 2>&1; do
 		echo "Waiting for MariaDB to start..."
 		sleep 1
+		start=$((start + 1))
+		if [ $start -ge $timeout ]; then
+			echo "Error: MariaDB did not start within expected time."
+			exit 1
+		fi
 	done
 
 	# Run initialization
